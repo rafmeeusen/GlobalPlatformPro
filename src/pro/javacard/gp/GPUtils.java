@@ -23,6 +23,7 @@
 package pro.javacard.gp;
 
 
+
 public class GPUtils {
 
 	public static String byteArrayToReadableString(byte[] array) {
@@ -45,6 +46,21 @@ public class GPUtils {
 		System.arraycopy(a, 0, s, 0, a.length);
 		System.arraycopy(b, 0, s, a.length, b.length);
 		return s;
+	}
+
+	public static byte[] hexStringToByteArray (String hexstring) throws IllegalArgumentException {
+		int len = hexstring.length();
+		if ( (len % 2 ) != 0) {
+			throw new IllegalArgumentException("hexstring must be even length");
+		}
+		int balen = len/2;
+		byte[] ba = new byte[balen];
+		for (int i = 0; i < balen; i++) {
+			int highnibble = Character.digit(hexstring.charAt(2*i), 16);
+			int lownibble = Character.digit(hexstring.charAt(2*i+1), 16);
+			ba[i] = (byte) (16*highnibble + lownibble);
+		}
+		return ba;
 	}
 
 }
