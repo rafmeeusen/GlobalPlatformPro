@@ -7,7 +7,6 @@ import javax.smartcardio.CardException;
 
 import org.junit.Test;
 
-import pro.javacard.gp.GPData;
 import pro.javacard.gp.GPException;
 import pro.javacard.gp.GPKeySet;
 import pro.javacard.gp.GPKeySet.GPKey;
@@ -30,9 +29,7 @@ public class TestJCOPSimulKeyChange extends TestJCOPSimul {
 		newkeys.add(new GPKey(01, 02, new_isdkey1_2));
 		newkeys.add(new GPKey(01, 03, new_isdkey1_3));
 
-		GPData.print_card_info(gp);
-		gp.putKeys(newkeys, true); // replace = true ??
-		GPData.print_card_info(gp);
+		gp.putKeys(newkeys, true);
 	}
 
 }
